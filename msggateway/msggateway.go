@@ -2,6 +2,13 @@ package msggateway
 
 import "errors"
 
+func (x *KickConnectionByTokenReq) Check() error {
+	if x.UserID == "" || x.Token == "" || x.PlatformID < 1 || x.PlatformID > 10 {
+		return errors.New("userID, platformID and token are required")
+	}
+	return nil
+}
+
 func (x *OnlinePushMsgReq) Check() error {
 	if x.MsgData == nil {
 		return errors.New("MsgData is empty")

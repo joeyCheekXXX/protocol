@@ -734,6 +734,102 @@ func (*MultiTerminalLoginCheckResp) Descriptor() ([]byte, []int) {
 	return file_msggateway_msggateway_proto_rawDescGZIP(), []int{13}
 }
 
+type KickConnectionByTokenReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlatformID    int32                  `protobuf:"varint,1,opt,name=platformID,proto3" json:"platformID"`
+	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
+	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *KickConnectionByTokenReq) Reset() {
+	*x = KickConnectionByTokenReq{}
+	mi := &file_msggateway_msggateway_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *KickConnectionByTokenReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KickConnectionByTokenReq) ProtoMessage() {}
+
+func (x *KickConnectionByTokenReq) ProtoReflect() protoreflect.Message {
+	mi := &file_msggateway_msggateway_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KickConnectionByTokenReq.ProtoReflect.Descriptor instead.
+func (*KickConnectionByTokenReq) Descriptor() ([]byte, []int) {
+	return file_msggateway_msggateway_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *KickConnectionByTokenReq) GetPlatformID() int32 {
+	if x != nil {
+		return x.PlatformID
+	}
+	return 0
+}
+
+func (x *KickConnectionByTokenReq) GetUserID() string {
+	if x != nil {
+		return x.UserID
+	}
+	return ""
+}
+
+func (x *KickConnectionByTokenReq) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type KickConnectionByTokenResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *KickConnectionByTokenResp) Reset() {
+	*x = KickConnectionByTokenResp{}
+	mi := &file_msggateway_msggateway_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *KickConnectionByTokenResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KickConnectionByTokenResp) ProtoMessage() {}
+
+func (x *KickConnectionByTokenResp) ProtoReflect() protoreflect.Message {
+	mi := &file_msggateway_msggateway_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KickConnectionByTokenResp.ProtoReflect.Descriptor instead.
+func (*KickConnectionByTokenResp) Descriptor() ([]byte, []int) {
+	return file_msggateway_msggateway_proto_rawDescGZIP(), []int{15}
+}
+
 type GetUsersOnlineStatusResp_SuccessDetail struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PlatformID    int32                  `protobuf:"varint,1,opt,name=platformID,proto3" json:"platformID"`
@@ -746,7 +842,7 @@ type GetUsersOnlineStatusResp_SuccessDetail struct {
 
 func (x *GetUsersOnlineStatusResp_SuccessDetail) Reset() {
 	*x = GetUsersOnlineStatusResp_SuccessDetail{}
-	mi := &file_msggateway_msggateway_proto_msgTypes[14]
+	mi := &file_msggateway_msggateway_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -758,7 +854,7 @@ func (x *GetUsersOnlineStatusResp_SuccessDetail) String() string {
 func (*GetUsersOnlineStatusResp_SuccessDetail) ProtoMessage() {}
 
 func (x *GetUsersOnlineStatusResp_SuccessDetail) ProtoReflect() protoreflect.Message {
-	mi := &file_msggateway_msggateway_proto_msgTypes[14]
+	mi := &file_msggateway_msggateway_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -811,7 +907,7 @@ type GetUsersOnlineStatusResp_FailedDetail struct {
 
 func (x *GetUsersOnlineStatusResp_FailedDetail) Reset() {
 	*x = GetUsersOnlineStatusResp_FailedDetail{}
-	mi := &file_msggateway_msggateway_proto_msgTypes[15]
+	mi := &file_msggateway_msggateway_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -823,7 +919,7 @@ func (x *GetUsersOnlineStatusResp_FailedDetail) String() string {
 func (*GetUsersOnlineStatusResp_FailedDetail) ProtoMessage() {}
 
 func (x *GetUsersOnlineStatusResp_FailedDetail) ProtoReflect() protoreflect.Message {
-	mi := &file_msggateway_msggateway_proto_msgTypes[15]
+	mi := &file_msggateway_msggateway_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -857,7 +953,7 @@ type GetUsersOnlineStatusResp_SuccessResult struct {
 
 func (x *GetUsersOnlineStatusResp_SuccessResult) Reset() {
 	*x = GetUsersOnlineStatusResp_SuccessResult{}
-	mi := &file_msggateway_msggateway_proto_msgTypes[16]
+	mi := &file_msggateway_msggateway_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -869,7 +965,7 @@ func (x *GetUsersOnlineStatusResp_SuccessResult) String() string {
 func (*GetUsersOnlineStatusResp_SuccessResult) ProtoMessage() {}
 
 func (x *GetUsersOnlineStatusResp_SuccessResult) ProtoReflect() protoreflect.Message {
-	mi := &file_msggateway_msggateway_proto_msgTypes[16]
+	mi := &file_msggateway_msggateway_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -973,14 +1069,22 @@ const file_msggateway_msggateway_proto_rawDesc = "" +
 	"platformID\x18\x02 \x01(\x05R\n" +
 	"platformID\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"\x1d\n" +
-	"\x1bMultiTerminalLoginCheckResp2\xa7\x05\n" +
+	"\x1bMultiTerminalLoginCheckResp\"h\n" +
+	"\x18KickConnectionByTokenReq\x12\x1e\n" +
+	"\n" +
+	"platformID\x18\x01 \x01(\x05R\n" +
+	"platformID\x12\x16\n" +
+	"\x06userID\x18\x02 \x01(\tR\x06userID\x12\x14\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\"\x1b\n" +
+	"\x19KickConnectionByTokenResp2\x9b\x06\n" +
 	"\n" +
 	"msgGateway\x12Z\n" +
 	"\rOnlinePushMsg\x12#.openim.msggateway.OnlinePushMsgReq\x1a$.openim.msggateway.OnlinePushMsgResp\x12o\n" +
 	"\x14GetUsersOnlineStatus\x12*.openim.msggateway.GetUsersOnlineStatusReq\x1a+.openim.msggateway.GetUsersOnlineStatusResp\x12r\n" +
 	"\x15OnlineBatchPushOneMsg\x12+.openim.msggateway.OnlineBatchPushOneMsgReq\x1a,.openim.msggateway.OnlineBatchPushOneMsgResp\x12|\n" +
 	"\x1fSuperGroupOnlineBatchPushOneMsg\x12+.openim.msggateway.OnlineBatchPushOneMsgReq\x1a,.openim.msggateway.OnlineBatchPushOneMsgResp\x12`\n" +
-	"\x0fKickUserOffline\x12%.openim.msggateway.KickUserOfflineReq\x1a&.openim.msggateway.KickUserOfflineResp\x12x\n" +
+	"\x0fKickUserOffline\x12%.openim.msggateway.KickUserOfflineReq\x1a&.openim.msggateway.KickUserOfflineResp\x12r\n" +
+	"\x15KickConnectionByToken\x12+.openim.msggateway.KickConnectionByTokenReq\x1a,.openim.msggateway.KickConnectionByTokenResp\x12x\n" +
 	"\x17MultiTerminalLoginCheck\x12-.openim.msggateway.MultiTerminalLoginCheckReq\x1a..openim.msggateway.MultiTerminalLoginCheckRespB*Z(github.com/openimsdk/protocol/msggatewayb\x06proto3"
 
 var (
@@ -995,7 +1099,7 @@ func file_msggateway_msggateway_proto_rawDescGZIP() []byte {
 	return file_msggateway_msggateway_proto_rawDescData
 }
 
-var file_msggateway_msggateway_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_msggateway_msggateway_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_msggateway_msggateway_proto_goTypes = []any{
 	(*OnlinePushMsgReq)(nil),                       // 0: openim.msggateway.OnlinePushMsgReq
 	(*OnlinePushMsgResp)(nil),                      // 1: openim.msggateway.OnlinePushMsgResp
@@ -1011,35 +1115,39 @@ var file_msggateway_msggateway_proto_goTypes = []any{
 	(*KickUserOfflineResp)(nil),                    // 11: openim.msggateway.KickUserOfflineResp
 	(*MultiTerminalLoginCheckReq)(nil),             // 12: openim.msggateway.MultiTerminalLoginCheckReq
 	(*MultiTerminalLoginCheckResp)(nil),            // 13: openim.msggateway.MultiTerminalLoginCheckResp
-	(*GetUsersOnlineStatusResp_SuccessDetail)(nil), // 14: openim.msggateway.GetUsersOnlineStatusResp.SuccessDetail
-	(*GetUsersOnlineStatusResp_FailedDetail)(nil),  // 15: openim.msggateway.GetUsersOnlineStatusResp.FailedDetail
-	(*GetUsersOnlineStatusResp_SuccessResult)(nil), // 16: openim.msggateway.GetUsersOnlineStatusResp.SuccessResult
-	(*sdkws.MsgData)(nil),                          // 17: openim.sdkws.MsgData
+	(*KickConnectionByTokenReq)(nil),               // 14: openim.msggateway.KickConnectionByTokenReq
+	(*KickConnectionByTokenResp)(nil),              // 15: openim.msggateway.KickConnectionByTokenResp
+	(*GetUsersOnlineStatusResp_SuccessDetail)(nil), // 16: openim.msggateway.GetUsersOnlineStatusResp.SuccessDetail
+	(*GetUsersOnlineStatusResp_FailedDetail)(nil),  // 17: openim.msggateway.GetUsersOnlineStatusResp.FailedDetail
+	(*GetUsersOnlineStatusResp_SuccessResult)(nil), // 18: openim.msggateway.GetUsersOnlineStatusResp.SuccessResult
+	(*sdkws.MsgData)(nil),                          // 19: openim.sdkws.MsgData
 }
 var file_msggateway_msggateway_proto_depIdxs = []int32{
-	17, // 0: openim.msggateway.OnlinePushMsgReq.msgData:type_name -> openim.sdkws.MsgData
+	19, // 0: openim.msggateway.OnlinePushMsgReq.msgData:type_name -> openim.sdkws.MsgData
 	5,  // 1: openim.msggateway.OnlinePushMsgResp.resp:type_name -> openim.msggateway.SingleMsgToUserPlatform
 	5,  // 2: openim.msggateway.SingleMsgToUserResults.resp:type_name -> openim.msggateway.SingleMsgToUserPlatform
-	17, // 3: openim.msggateway.OnlineBatchPushOneMsgReq.msgData:type_name -> openim.sdkws.MsgData
+	19, // 3: openim.msggateway.OnlineBatchPushOneMsgReq.msgData:type_name -> openim.sdkws.MsgData
 	2,  // 4: openim.msggateway.OnlineBatchPushOneMsgResp.singlePushResult:type_name -> openim.msggateway.SingleMsgToUserResults
-	16, // 5: openim.msggateway.GetUsersOnlineStatusResp.successResult:type_name -> openim.msggateway.GetUsersOnlineStatusResp.SuccessResult
-	15, // 6: openim.msggateway.GetUsersOnlineStatusResp.failedResult:type_name -> openim.msggateway.GetUsersOnlineStatusResp.FailedDetail
+	18, // 5: openim.msggateway.GetUsersOnlineStatusResp.successResult:type_name -> openim.msggateway.GetUsersOnlineStatusResp.SuccessResult
+	17, // 6: openim.msggateway.GetUsersOnlineStatusResp.failedResult:type_name -> openim.msggateway.GetUsersOnlineStatusResp.FailedDetail
 	9,  // 7: openim.msggateway.SingleDetail.singlePlatformToken:type_name -> openim.msggateway.SinglePlatformToken
-	14, // 8: openim.msggateway.GetUsersOnlineStatusResp.SuccessResult.detailPlatformStatus:type_name -> openim.msggateway.GetUsersOnlineStatusResp.SuccessDetail
+	16, // 8: openim.msggateway.GetUsersOnlineStatusResp.SuccessResult.detailPlatformStatus:type_name -> openim.msggateway.GetUsersOnlineStatusResp.SuccessDetail
 	0,  // 9: openim.msggateway.msgGateway.OnlinePushMsg:input_type -> openim.msggateway.OnlinePushMsgReq
 	6,  // 10: openim.msggateway.msgGateway.GetUsersOnlineStatus:input_type -> openim.msggateway.GetUsersOnlineStatusReq
 	3,  // 11: openim.msggateway.msgGateway.OnlineBatchPushOneMsg:input_type -> openim.msggateway.OnlineBatchPushOneMsgReq
 	3,  // 12: openim.msggateway.msgGateway.SuperGroupOnlineBatchPushOneMsg:input_type -> openim.msggateway.OnlineBatchPushOneMsgReq
 	10, // 13: openim.msggateway.msgGateway.KickUserOffline:input_type -> openim.msggateway.KickUserOfflineReq
-	12, // 14: openim.msggateway.msgGateway.MultiTerminalLoginCheck:input_type -> openim.msggateway.MultiTerminalLoginCheckReq
-	1,  // 15: openim.msggateway.msgGateway.OnlinePushMsg:output_type -> openim.msggateway.OnlinePushMsgResp
-	7,  // 16: openim.msggateway.msgGateway.GetUsersOnlineStatus:output_type -> openim.msggateway.GetUsersOnlineStatusResp
-	4,  // 17: openim.msggateway.msgGateway.OnlineBatchPushOneMsg:output_type -> openim.msggateway.OnlineBatchPushOneMsgResp
-	4,  // 18: openim.msggateway.msgGateway.SuperGroupOnlineBatchPushOneMsg:output_type -> openim.msggateway.OnlineBatchPushOneMsgResp
-	11, // 19: openim.msggateway.msgGateway.KickUserOffline:output_type -> openim.msggateway.KickUserOfflineResp
-	13, // 20: openim.msggateway.msgGateway.MultiTerminalLoginCheck:output_type -> openim.msggateway.MultiTerminalLoginCheckResp
-	15, // [15:21] is the sub-list for method output_type
-	9,  // [9:15] is the sub-list for method input_type
+	14, // 14: openim.msggateway.msgGateway.KickConnectionByToken:input_type -> openim.msggateway.KickConnectionByTokenReq
+	12, // 15: openim.msggateway.msgGateway.MultiTerminalLoginCheck:input_type -> openim.msggateway.MultiTerminalLoginCheckReq
+	1,  // 16: openim.msggateway.msgGateway.OnlinePushMsg:output_type -> openim.msggateway.OnlinePushMsgResp
+	7,  // 17: openim.msggateway.msgGateway.GetUsersOnlineStatus:output_type -> openim.msggateway.GetUsersOnlineStatusResp
+	4,  // 18: openim.msggateway.msgGateway.OnlineBatchPushOneMsg:output_type -> openim.msggateway.OnlineBatchPushOneMsgResp
+	4,  // 19: openim.msggateway.msgGateway.SuperGroupOnlineBatchPushOneMsg:output_type -> openim.msggateway.OnlineBatchPushOneMsgResp
+	11, // 20: openim.msggateway.msgGateway.KickUserOffline:output_type -> openim.msggateway.KickUserOfflineResp
+	15, // 21: openim.msggateway.msgGateway.KickConnectionByToken:output_type -> openim.msggateway.KickConnectionByTokenResp
+	13, // 22: openim.msggateway.msgGateway.MultiTerminalLoginCheck:output_type -> openim.msggateway.MultiTerminalLoginCheckResp
+	16, // [16:23] is the sub-list for method output_type
+	9,  // [9:16] is the sub-list for method input_type
 	9,  // [9:9] is the sub-list for extension type_name
 	9,  // [9:9] is the sub-list for extension extendee
 	0,  // [0:9] is the sub-list for field type_name
@@ -1056,7 +1164,7 @@ func file_msggateway_msggateway_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_msggateway_msggateway_proto_rawDesc), len(file_msggateway_msggateway_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -58,6 +58,13 @@ message getExistingTokenResp {
   map<string, int32> tokenStates = 1;
 }
 
+message forceLogoutByTokenReq {
+  int32 platformID = 1;
+  string userID = 2;
+  string token = 3;
+}
+message forceLogoutByTokenResp {}
+
 service Auth {
   // Generate token
   rpc getAdminToken(getAdminTokenReq) returns (getAdminTokenResp);
@@ -65,6 +72,8 @@ service Auth {
   rpc getUserToken(getUserTokenReq) returns (getUserTokenResp);
   // Force logout
   rpc forceLogout(forceLogoutReq) returns (forceLogoutResp);
+  // Revoke one login token and disconnect its connections.
+  rpc forceLogoutByToken(forceLogoutByTokenReq) returns (forceLogoutByTokenResp);
   // Parse token
   rpc parseToken(parseTokenReq) returns (parseTokenResp);
   // Invalidate or mark the token as kicked out

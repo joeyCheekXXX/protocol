@@ -693,6 +693,102 @@ func (x *GetExistingTokenResp) GetTokenStates() map[string]int32 {
 	return nil
 }
 
+type ForceLogoutByTokenReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlatformID    int32                  `protobuf:"varint,1,opt,name=platformID,proto3" json:"platformID"`
+	UserID        string                 `protobuf:"bytes,2,opt,name=userID,proto3" json:"userID"`
+	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ForceLogoutByTokenReq) Reset() {
+	*x = ForceLogoutByTokenReq{}
+	mi := &file_auth_auth_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ForceLogoutByTokenReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ForceLogoutByTokenReq) ProtoMessage() {}
+
+func (x *ForceLogoutByTokenReq) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ForceLogoutByTokenReq.ProtoReflect.Descriptor instead.
+func (*ForceLogoutByTokenReq) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ForceLogoutByTokenReq) GetPlatformID() int32 {
+	if x != nil {
+		return x.PlatformID
+	}
+	return 0
+}
+
+func (x *ForceLogoutByTokenReq) GetUserID() string {
+	if x != nil {
+		return x.UserID
+	}
+	return ""
+}
+
+func (x *ForceLogoutByTokenReq) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type ForceLogoutByTokenResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ForceLogoutByTokenResp) Reset() {
+	*x = ForceLogoutByTokenResp{}
+	mi := &file_auth_auth_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ForceLogoutByTokenResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ForceLogoutByTokenResp) ProtoMessage() {}
+
+func (x *ForceLogoutByTokenResp) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ForceLogoutByTokenResp.ProtoReflect.Descriptor instead.
+func (*ForceLogoutByTokenResp) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{15}
+}
+
 var File_auth_auth_proto protoreflect.FileDescriptor
 
 const file_auth_auth_proto_rawDesc = "" +
@@ -745,11 +841,19 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\vtokenStates\x18\x01 \x03(\v22.openim.auth.getExistingTokenResp.TokenStatesEntryR\vtokenStates\x1a>\n" +
 	"\x10TokenStatesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x012\xaa\x04\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"e\n" +
+	"\x15forceLogoutByTokenReq\x12\x1e\n" +
+	"\n" +
+	"platformID\x18\x01 \x01(\x05R\n" +
+	"platformID\x12\x16\n" +
+	"\x06userID\x18\x02 \x01(\tR\x06userID\x12\x14\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\"\x18\n" +
+	"\x16forceLogoutByTokenResp2\x89\x05\n" +
 	"\x04Auth\x12N\n" +
 	"\rgetAdminToken\x12\x1d.openim.auth.getAdminTokenReq\x1a\x1e.openim.auth.getAdminTokenResp\x12K\n" +
 	"\fgetUserToken\x12\x1c.openim.auth.getUserTokenReq\x1a\x1d.openim.auth.getUserTokenResp\x12H\n" +
-	"\vforceLogout\x12\x1b.openim.auth.forceLogoutReq\x1a\x1c.openim.auth.forceLogoutResp\x12E\n" +
+	"\vforceLogout\x12\x1b.openim.auth.forceLogoutReq\x1a\x1c.openim.auth.forceLogoutResp\x12]\n" +
+	"\x12forceLogoutByToken\x12\".openim.auth.forceLogoutByTokenReq\x1a#.openim.auth.forceLogoutByTokenResp\x12E\n" +
 	"\n" +
 	"parseToken\x12\x1a.openim.auth.parseTokenReq\x1a\x1b.openim.auth.parseTokenResp\x12T\n" +
 	"\x0finvalidateToken\x12\x1f.openim.auth.invalidateTokenReq\x1a .openim.auth.invalidateTokenResp\x12E\n" +
@@ -769,42 +873,46 @@ func file_auth_auth_proto_rawDescGZIP() []byte {
 	return file_auth_auth_proto_rawDescData
 }
 
-var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_auth_auth_proto_goTypes = []any{
-	(*GetAdminTokenReq)(nil),     // 0: openim.auth.getAdminTokenReq
-	(*GetAdminTokenResp)(nil),    // 1: openim.auth.getAdminTokenResp
-	(*ForceLogoutReq)(nil),       // 2: openim.auth.forceLogoutReq
-	(*ForceLogoutResp)(nil),      // 3: openim.auth.forceLogoutResp
-	(*ParseTokenReq)(nil),        // 4: openim.auth.parseTokenReq
-	(*ParseTokenResp)(nil),       // 5: openim.auth.parseTokenResp
-	(*GetUserTokenReq)(nil),      // 6: openim.auth.getUserTokenReq
-	(*GetUserTokenResp)(nil),     // 7: openim.auth.getUserTokenResp
-	(*InvalidateTokenReq)(nil),   // 8: openim.auth.invalidateTokenReq
-	(*InvalidateTokenResp)(nil),  // 9: openim.auth.invalidateTokenResp
-	(*KickTokensReq)(nil),        // 10: openim.auth.kickTokensReq
-	(*KickTokensResp)(nil),       // 11: openim.auth.kickTokensResp
-	(*GetExistingTokenReq)(nil),  // 12: openim.auth.GetExistingTokenReq
-	(*GetExistingTokenResp)(nil), // 13: openim.auth.getExistingTokenResp
-	nil,                          // 14: openim.auth.getExistingTokenResp.TokenStatesEntry
+	(*GetAdminTokenReq)(nil),       // 0: openim.auth.getAdminTokenReq
+	(*GetAdminTokenResp)(nil),      // 1: openim.auth.getAdminTokenResp
+	(*ForceLogoutReq)(nil),         // 2: openim.auth.forceLogoutReq
+	(*ForceLogoutResp)(nil),        // 3: openim.auth.forceLogoutResp
+	(*ParseTokenReq)(nil),          // 4: openim.auth.parseTokenReq
+	(*ParseTokenResp)(nil),         // 5: openim.auth.parseTokenResp
+	(*GetUserTokenReq)(nil),        // 6: openim.auth.getUserTokenReq
+	(*GetUserTokenResp)(nil),       // 7: openim.auth.getUserTokenResp
+	(*InvalidateTokenReq)(nil),     // 8: openim.auth.invalidateTokenReq
+	(*InvalidateTokenResp)(nil),    // 9: openim.auth.invalidateTokenResp
+	(*KickTokensReq)(nil),          // 10: openim.auth.kickTokensReq
+	(*KickTokensResp)(nil),         // 11: openim.auth.kickTokensResp
+	(*GetExistingTokenReq)(nil),    // 12: openim.auth.GetExistingTokenReq
+	(*GetExistingTokenResp)(nil),   // 13: openim.auth.getExistingTokenResp
+	(*ForceLogoutByTokenReq)(nil),  // 14: openim.auth.forceLogoutByTokenReq
+	(*ForceLogoutByTokenResp)(nil), // 15: openim.auth.forceLogoutByTokenResp
+	nil,                            // 16: openim.auth.getExistingTokenResp.TokenStatesEntry
 }
 var file_auth_auth_proto_depIdxs = []int32{
-	14, // 0: openim.auth.getExistingTokenResp.tokenStates:type_name -> openim.auth.getExistingTokenResp.TokenStatesEntry
+	16, // 0: openim.auth.getExistingTokenResp.tokenStates:type_name -> openim.auth.getExistingTokenResp.TokenStatesEntry
 	0,  // 1: openim.auth.Auth.getAdminToken:input_type -> openim.auth.getAdminTokenReq
 	6,  // 2: openim.auth.Auth.getUserToken:input_type -> openim.auth.getUserTokenReq
 	2,  // 3: openim.auth.Auth.forceLogout:input_type -> openim.auth.forceLogoutReq
-	4,  // 4: openim.auth.Auth.parseToken:input_type -> openim.auth.parseTokenReq
-	8,  // 5: openim.auth.Auth.invalidateToken:input_type -> openim.auth.invalidateTokenReq
-	10, // 6: openim.auth.Auth.kickTokens:input_type -> openim.auth.kickTokensReq
-	12, // 7: openim.auth.Auth.getExistingToken:input_type -> openim.auth.GetExistingTokenReq
-	1,  // 8: openim.auth.Auth.getAdminToken:output_type -> openim.auth.getAdminTokenResp
-	7,  // 9: openim.auth.Auth.getUserToken:output_type -> openim.auth.getUserTokenResp
-	3,  // 10: openim.auth.Auth.forceLogout:output_type -> openim.auth.forceLogoutResp
-	5,  // 11: openim.auth.Auth.parseToken:output_type -> openim.auth.parseTokenResp
-	9,  // 12: openim.auth.Auth.invalidateToken:output_type -> openim.auth.invalidateTokenResp
-	11, // 13: openim.auth.Auth.kickTokens:output_type -> openim.auth.kickTokensResp
-	13, // 14: openim.auth.Auth.getExistingToken:output_type -> openim.auth.getExistingTokenResp
-	8,  // [8:15] is the sub-list for method output_type
-	1,  // [1:8] is the sub-list for method input_type
+	14, // 4: openim.auth.Auth.forceLogoutByToken:input_type -> openim.auth.forceLogoutByTokenReq
+	4,  // 5: openim.auth.Auth.parseToken:input_type -> openim.auth.parseTokenReq
+	8,  // 6: openim.auth.Auth.invalidateToken:input_type -> openim.auth.invalidateTokenReq
+	10, // 7: openim.auth.Auth.kickTokens:input_type -> openim.auth.kickTokensReq
+	12, // 8: openim.auth.Auth.getExistingToken:input_type -> openim.auth.GetExistingTokenReq
+	1,  // 9: openim.auth.Auth.getAdminToken:output_type -> openim.auth.getAdminTokenResp
+	7,  // 10: openim.auth.Auth.getUserToken:output_type -> openim.auth.getUserTokenResp
+	3,  // 11: openim.auth.Auth.forceLogout:output_type -> openim.auth.forceLogoutResp
+	15, // 12: openim.auth.Auth.forceLogoutByToken:output_type -> openim.auth.forceLogoutByTokenResp
+	5,  // 13: openim.auth.Auth.parseToken:output_type -> openim.auth.parseTokenResp
+	9,  // 14: openim.auth.Auth.invalidateToken:output_type -> openim.auth.invalidateTokenResp
+	11, // 15: openim.auth.Auth.kickTokens:output_type -> openim.auth.kickTokensResp
+	13, // 16: openim.auth.Auth.getExistingToken:output_type -> openim.auth.getExistingTokenResp
+	9,  // [9:17] is the sub-list for method output_type
+	1,  // [1:9] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
 	1,  // [1:1] is the sub-list for extension extendee
 	0,  // [0:1] is the sub-list for field type_name
@@ -821,7 +929,7 @@ func file_auth_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_auth_proto_rawDesc), len(file_auth_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -19,13 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_GetAdminToken_FullMethodName    = "/openim.auth.Auth/getAdminToken"
-	Auth_GetUserToken_FullMethodName     = "/openim.auth.Auth/getUserToken"
-	Auth_ForceLogout_FullMethodName      = "/openim.auth.Auth/forceLogout"
-	Auth_ParseToken_FullMethodName       = "/openim.auth.Auth/parseToken"
-	Auth_InvalidateToken_FullMethodName  = "/openim.auth.Auth/invalidateToken"
-	Auth_KickTokens_FullMethodName       = "/openim.auth.Auth/kickTokens"
-	Auth_GetExistingToken_FullMethodName = "/openim.auth.Auth/getExistingToken"
+	Auth_GetAdminToken_FullMethodName      = "/openim.auth.Auth/getAdminToken"
+	Auth_GetUserToken_FullMethodName       = "/openim.auth.Auth/getUserToken"
+	Auth_ForceLogout_FullMethodName        = "/openim.auth.Auth/forceLogout"
+	Auth_ForceLogoutByToken_FullMethodName = "/openim.auth.Auth/forceLogoutByToken"
+	Auth_ParseToken_FullMethodName         = "/openim.auth.Auth/parseToken"
+	Auth_InvalidateToken_FullMethodName    = "/openim.auth.Auth/invalidateToken"
+	Auth_KickTokens_FullMethodName         = "/openim.auth.Auth/kickTokens"
+	Auth_GetExistingToken_FullMethodName   = "/openim.auth.Auth/getExistingToken"
 )
 
 // AuthClient is the client API for Auth service.
@@ -38,6 +39,8 @@ type AuthClient interface {
 	GetUserToken(ctx context.Context, in *GetUserTokenReq, opts ...grpc.CallOption) (*GetUserTokenResp, error)
 	// Force logout
 	ForceLogout(ctx context.Context, in *ForceLogoutReq, opts ...grpc.CallOption) (*ForceLogoutResp, error)
+
+	ForceLogoutByToken(ctx context.Context, in *ForceLogoutByTokenReq, opts ...grpc.CallOption) (*ForceLogoutByTokenResp, error)
 	// Parse token
 	ParseToken(ctx context.Context, in *ParseTokenReq, opts ...grpc.CallOption) (*ParseTokenResp, error)
 	// Invalidate or mark the token as kicked out
@@ -80,6 +83,15 @@ func (c *authClient) ForceLogout(ctx context.Context, in *ForceLogoutReq, opts .
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ForceLogoutResp)
 	err := c.cc.Invoke(ctx, Auth_ForceLogout_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+func (c *authClient) ForceLogoutByToken(ctx context.Context, in *ForceLogoutByTokenReq, opts ...grpc.CallOption) (*ForceLogoutByTokenResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ForceLogoutByTokenResp)
+	err := c.cc.Invoke(ctx, Auth_ForceLogoutByToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -136,6 +148,8 @@ type AuthServer interface {
 	GetUserToken(context.Context, *GetUserTokenReq) (*GetUserTokenResp, error)
 	// Force logout
 	ForceLogout(context.Context, *ForceLogoutReq) (*ForceLogoutResp, error)
+
+	ForceLogoutByToken(context.Context, *ForceLogoutByTokenReq) (*ForceLogoutByTokenResp, error)
 	// Parse token
 	ParseToken(context.Context, *ParseTokenReq) (*ParseTokenResp, error)
 	// Invalidate or mark the token as kicked out
@@ -162,6 +176,9 @@ func (UnimplementedAuthServer) GetUserToken(context.Context, *GetUserTokenReq) (
 }
 func (UnimplementedAuthServer) ForceLogout(context.Context, *ForceLogoutReq) (*ForceLogoutResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForceLogout not implemented")
+}
+func (UnimplementedAuthServer) ForceLogoutByToken(context.Context, *ForceLogoutByTokenReq) (*ForceLogoutByTokenResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForceLogoutByToken not implemented")
 }
 func (UnimplementedAuthServer) ParseToken(context.Context, *ParseTokenReq) (*ParseTokenResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ParseToken not implemented")
@@ -246,6 +263,23 @@ func _Auth_ForceLogout_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).ForceLogout(ctx, req.(*ForceLogoutReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+func _Auth_ForceLogoutByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForceLogoutByTokenReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).ForceLogoutByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_ForceLogoutByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).ForceLogoutByToken(ctx, req.(*ForceLogoutByTokenReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -340,6 +374,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "forceLogout",
 			Handler:    _Auth_ForceLogout_Handler,
+		},
+		{
+			MethodName: "forceLogoutByToken",
+			Handler:    _Auth_ForceLogoutByToken_Handler,
 		},
 		{
 			MethodName: "parseToken",

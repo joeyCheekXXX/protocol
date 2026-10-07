@@ -93,11 +93,19 @@ message MultiTerminalLoginCheckReq {
 }
 message MultiTerminalLoginCheckResp {}
 
+message KickConnectionByTokenReq {
+  int32 platformID = 1;
+  string userID = 2;
+  string token = 3;
+}
+message KickConnectionByTokenResp {}
+
 service msgGateway {
   rpc OnlinePushMsg(OnlinePushMsgReq) returns (OnlinePushMsgResp);
   rpc GetUsersOnlineStatus(GetUsersOnlineStatusReq) returns (GetUsersOnlineStatusResp);
   rpc OnlineBatchPushOneMsg(OnlineBatchPushOneMsgReq) returns (OnlineBatchPushOneMsgResp);
   rpc SuperGroupOnlineBatchPushOneMsg(OnlineBatchPushOneMsgReq) returns (OnlineBatchPushOneMsgResp);
   rpc KickUserOffline(KickUserOfflineReq) returns (KickUserOfflineResp);
+  rpc KickConnectionByToken(KickConnectionByTokenReq) returns (KickConnectionByTokenResp);
   rpc MultiTerminalLoginCheck(MultiTerminalLoginCheckReq) returns (MultiTerminalLoginCheckResp);
 }

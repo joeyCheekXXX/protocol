@@ -23,6 +23,16 @@ func (x *ForceLogoutReq) Check() error {
 	return nil
 }
 
+func (x *ForceLogoutByTokenReq) Check() error {
+	if err := (&ForceLogoutReq{UserID: x.UserID, PlatformID: x.PlatformID}).Check(); err != nil {
+		return err
+	}
+	if x.Token == "" {
+		return errors.New("token is empty")
+	}
+	return nil
+}
+
 func (x *ParseTokenReq) Check() error {
 	if x.Token == "" {
 		return errors.New("userID is empty")

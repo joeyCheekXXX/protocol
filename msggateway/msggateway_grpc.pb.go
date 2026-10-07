@@ -24,6 +24,7 @@ const (
 	MsgGateway_OnlineBatchPushOneMsg_FullMethodName           = "/openim.msggateway.msgGateway/OnlineBatchPushOneMsg"
 	MsgGateway_SuperGroupOnlineBatchPushOneMsg_FullMethodName = "/openim.msggateway.msgGateway/SuperGroupOnlineBatchPushOneMsg"
 	MsgGateway_KickUserOffline_FullMethodName                 = "/openim.msggateway.msgGateway/KickUserOffline"
+	MsgGateway_KickConnectionByToken_FullMethodName           = "/openim.msggateway.msgGateway/KickConnectionByToken"
 	MsgGateway_MultiTerminalLoginCheck_FullMethodName         = "/openim.msggateway.msgGateway/MultiTerminalLoginCheck"
 )
 
@@ -36,6 +37,8 @@ type MsgGatewayClient interface {
 	OnlineBatchPushOneMsg(ctx context.Context, in *OnlineBatchPushOneMsgReq, opts ...grpc.CallOption) (*OnlineBatchPushOneMsgResp, error)
 	SuperGroupOnlineBatchPushOneMsg(ctx context.Context, in *OnlineBatchPushOneMsgReq, opts ...grpc.CallOption) (*OnlineBatchPushOneMsgResp, error)
 	KickUserOffline(ctx context.Context, in *KickUserOfflineReq, opts ...grpc.CallOption) (*KickUserOfflineResp, error)
+
+	KickConnectionByToken(ctx context.Context, in *KickConnectionByTokenReq, opts ...grpc.CallOption) (*KickConnectionByTokenResp, error)
 	MultiTerminalLoginCheck(ctx context.Context, in *MultiTerminalLoginCheckReq, opts ...grpc.CallOption) (*MultiTerminalLoginCheckResp, error)
 }
 
@@ -96,6 +99,15 @@ func (c *msgGatewayClient) KickUserOffline(ctx context.Context, in *KickUserOffl
 	}
 	return out, nil
 }
+func (c *msgGatewayClient) KickConnectionByToken(ctx context.Context, in *KickConnectionByTokenReq, opts ...grpc.CallOption) (*KickConnectionByTokenResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(KickConnectionByTokenResp)
+	err := c.cc.Invoke(ctx, MsgGateway_KickConnectionByToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
 
 func (c *msgGatewayClient) MultiTerminalLoginCheck(ctx context.Context, in *MultiTerminalLoginCheckReq, opts ...grpc.CallOption) (*MultiTerminalLoginCheckResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -116,6 +128,8 @@ type MsgGatewayServer interface {
 	OnlineBatchPushOneMsg(context.Context, *OnlineBatchPushOneMsgReq) (*OnlineBatchPushOneMsgResp, error)
 	SuperGroupOnlineBatchPushOneMsg(context.Context, *OnlineBatchPushOneMsgReq) (*OnlineBatchPushOneMsgResp, error)
 	KickUserOffline(context.Context, *KickUserOfflineReq) (*KickUserOfflineResp, error)
+
+	KickConnectionByToken(context.Context, *KickConnectionByTokenReq) (*KickConnectionByTokenResp, error)
 	MultiTerminalLoginCheck(context.Context, *MultiTerminalLoginCheckReq) (*MultiTerminalLoginCheckResp, error)
 	mustEmbedUnimplementedMsgGatewayServer()
 }
@@ -141,6 +155,9 @@ func (UnimplementedMsgGatewayServer) SuperGroupOnlineBatchPushOneMsg(context.Con
 }
 func (UnimplementedMsgGatewayServer) KickUserOffline(context.Context, *KickUserOfflineReq) (*KickUserOfflineResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method KickUserOffline not implemented")
+}
+func (UnimplementedMsgGatewayServer) KickConnectionByToken(context.Context, *KickConnectionByTokenReq) (*KickConnectionByTokenResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method KickConnectionByToken not implemented")
 }
 func (UnimplementedMsgGatewayServer) MultiTerminalLoginCheck(context.Context, *MultiTerminalLoginCheckReq) (*MultiTerminalLoginCheckResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MultiTerminalLoginCheck not implemented")
@@ -255,6 +272,23 @@ func _MsgGateway_KickUserOffline_Handler(srv interface{}, ctx context.Context, d
 	}
 	return interceptor(ctx, in, info, handler)
 }
+func _MsgGateway_KickConnectionByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KickConnectionByTokenReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgGatewayServer).KickConnectionByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MsgGateway_KickConnectionByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgGatewayServer).KickConnectionByToken(ctx, req.(*KickConnectionByTokenReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
 
 func _MsgGateway_MultiTerminalLoginCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MultiTerminalLoginCheckReq)
@@ -300,6 +334,10 @@ var MsgGateway_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "KickUserOffline",
 			Handler:    _MsgGateway_KickUserOffline_Handler,
+		},
+		{
+			MethodName: "KickConnectionByToken",
+			Handler:    _MsgGateway_KickConnectionByToken_Handler,
 		},
 		{
 			MethodName: "MultiTerminalLoginCheck",
