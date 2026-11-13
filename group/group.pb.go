@@ -1109,6 +1109,7 @@ type GroupApplicationResponseReq struct {
 	FromUserID    string                 `protobuf:"bytes,2,opt,name=fromUserID,proto3" json:"fromUserID"` //
 	HandledMsg    string                 `protobuf:"bytes,3,opt,name=handledMsg,proto3" json:"handledMsg"`
 	HandleResult  int32                  `protobuf:"varint,4,opt,name=handleResult,proto3" json:"handleResult"`
+	Nickname      string                 `protobuf:"bytes,5,opt,name=nickname,proto3" json:"nickname"` // 同意申请并创建新成员时使用的群昵称。
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1169,6 +1170,13 @@ func (x *GroupApplicationResponseReq) GetHandleResult() int32 {
 		return x.HandleResult
 	}
 	return 0
+}
+
+func (x *GroupApplicationResponseReq) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
 }
 
 type GroupApplicationResponseResp struct {
@@ -4505,7 +4513,7 @@ const file_group_group_proto_rawDesc = "" +
 	"joinSource\x12$\n" +
 	"\rinviterUserID\x18\x04 \x01(\tR\rinviterUserID\x12\x0e\n" +
 	"\x02ex\x18\x05 \x01(\tR\x02ex\"\x0f\n" +
-	"\rJoinGroupResp\"\x9b\x01\n" +
+	"\rJoinGroupResp\"\xb7\x01\n" +
 	"\x1bGroupApplicationResponseReq\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\x12\x1e\n" +
 	"\n" +
@@ -4514,7 +4522,8 @@ const file_group_group_proto_rawDesc = "" +
 	"\n" +
 	"handledMsg\x18\x03 \x01(\tR\n" +
 	"handledMsg\x12\"\n" +
-	"\fhandleResult\x18\x04 \x01(\x05R\fhandleResult\"\x1e\n" +
+	"\fhandleResult\x18\x04 \x01(\x05R\fhandleResult\x12\x1a\n" +
+	"\bnickname\x18\x05 \x01(\tR\bnickname\"\x1e\n" +
 	"\x1cGroupApplicationResponseResp\"@\n" +
 	"\fQuitGroupReq\x12\x18\n" +
 	"\agroupID\x18\x01 \x01(\tR\agroupID\x12\x16\n" +

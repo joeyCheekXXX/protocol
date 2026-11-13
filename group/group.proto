@@ -106,6 +106,7 @@ message GroupApplicationResponseReq {
   string fromUserID = 2; //
   string handledMsg = 3;
   int32 handleResult = 4;
+  string nickname = 5; // 同意申请并创建新成员时使用的群昵称。
 }
 message GroupApplicationResponseResp {}
 
